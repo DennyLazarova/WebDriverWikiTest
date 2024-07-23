@@ -17,7 +17,8 @@ namespace WikipediaNUnitProject
             var driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.wikipedia.org/");
 
-                        
+                  
+            
             Assert.That(driver.Title, Is.EqualTo("Wikipedia"));
 
             driver.Quit();
