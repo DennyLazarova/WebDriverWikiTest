@@ -16,16 +16,27 @@ namespace WebDriverWikiTest
            //Navigate to Wikipwdia page
             driver.Url = "https://www.wikipedia.org/";
 
-            ////Find the Search field
-            //var searchInput =  driver.FindElement(By.Id("searchInput"));
+            var cookies = driver.Manage().Cookies.AllCookies;
 
-            ////Click on the Field
-            //searchInput.Click();
+           //Print All Cookies
+            foreach (var cookie in cookies)
+            {
+                Console.WriteLine($"{cookie.Name}: {cookie.Value}: {cookie.Domain}: {cookie.Path}: {cookie.Expiry}");
+            }
 
-            ////Type Quality Assurance
-            //searchInput.SendKeys("Quality assurance" + Keys.Enter);
 
-            driver.FindElement(By.Id("searchInput")).SendKeys("Quality assurance" + Keys.Enter);
+            //Find the Search field
+            var searchInput = driver.FindElement(By.Id("searchInput"));
+
+            //Click on the Field
+            searchInput.Click();
+
+            Console.WriteLine("Element attribute" + searchInput.GetCssValue("background-color"));
+
+            //Type Quality Assurance
+            searchInput.SendKeys("Quality assurance" + Keys.Enter);
+
+            //driver.FindElement(By.Id("searchInput")).SendKeys("Quality assurance" + Keys.Enter);
 
             //Get the page title
             var currentPageTitle = driver.Title;
